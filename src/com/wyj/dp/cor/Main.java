@@ -1,11 +1,5 @@
 package com.wyj.dp.cor;
 
-import com.wyj.dp.cor.ratifyImp.DepartmentHeader;
-import com.wyj.dp.cor.ratifyImp.GroupLeader;
-import com.wyj.dp.cor.ratifyImp.Manager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created
@@ -15,10 +9,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Ratify> ratifies = new ArrayList<>();
-        ratifies.add(new GroupLeader());
-        ratifies.add(new Manager());
-        ratifies.add(new DepartmentHeader());
 
         Request request = new Request.Builder()
                 .setName("小明")
@@ -26,7 +16,7 @@ public class Main {
                 .setReason("常回家看看")
                 .build();
 
-        SimpleChain chain = new SimpleChain(ratifies, request);
+        Ratify.Chain chain = SimpleChainFactory.getSimpleChain(request);
         Result result = chain.proceed(request);
 
         System.out.println("result:"+result);
